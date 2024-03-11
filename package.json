@@ -1,0 +1,15 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "calculator web app in which the calculations will be performed within server.js",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "raja",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

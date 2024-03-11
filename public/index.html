@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    input {
+      padding: 10px;
+      margin: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Simple Calculator</h1>
+  <form id="calculatorForm">
+    <input type="number" name="num1" placeholder="Enter number 1" required>
+    <select name="operation" required>
+      <option value="add">+</option>
+      <option value="subtract">-</option>
+    </select>
+    <input type="number" name="num2" placeholder="Enter number 2" required>
+    <button type="button" onclick="calculate()">Calculate</button>
+  </form>
+  <h2 id="result"></h2>
+
+  <script>
+    function calculate() {
+      const form = document.getElementById('calculatorForm');
+      const resultElement = document.getElementById('result');
+
+      fetch('/calculate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(new FormData(form)).toString(),
+      })
+        .then(response => response.json())
+        .then(data => {
+          resultElement.textContent = `Result: ${data.result}`;
+        })
+        .catch(error => console.error('Error:', error));
+    }
+  </script>
+</body>
+
+</html>
